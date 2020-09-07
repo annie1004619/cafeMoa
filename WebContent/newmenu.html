@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link type="text/css" rel="stylesheet" href="newmenu_style.css">
+
+</head>
+<body>
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / 3</div>
+  <img src="images/openimg1.jpg" style="width:100%">
+  <div class="text">1</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / 3</div>
+  <img src="images/openimg2.jpg" style="width:100%">
+  <div class="text">2</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">3 / 3</div>
+  <img src="images/openimg3.jpg" style="width:100%">
+  <div class="text">3</div>
+</div>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+</div>
+
+<br/><br/>
+
+<h1>MONTHLY NEW MENU</h1>
+
+<div class="parent">
+   <div class="container">
+     <img src="images/ediya_블루코코후룻치노.png" alt="Avatar" class="newimage">
+     <div class="overlay">
+       <div class="newtext">EDIYA<br/> 블루코코 <br/>후룻치노</div>
+     </div>
+   </div>
+   <div class="container">
+     <img src="images/star_애플망고블렌디드.png" alt="Avatar" class="newimage">
+     <div class="overlay">
+      <div class="newtext">STARBUCKS<br/>애플망고<br/>블렌디드</div>
+     </div>
+   </div>
+   <div class="container">
+     <img src="images/hollys_멜론스무디.png" alt="Avatar" class="newimage">
+     <div class="overlay">
+        <div class="newtext">HOLLYS<br/>멜론스무디</div>
+     </div>
+   </div>
+</div>
+<br/><br/><br/><br/>
+
+<h2>더 많은 메뉴보기</h2>
+
+<!-- Portfolio Gallery Grid -->
+<div class="row">
+  <div class="column">
+    <div class="content">
+      <img src="images/hollys_피치딸기크러쉬.png" alt="Mountains" style="width:100%">
+      <h3>피치딸기크러쉬</h3>
+      <p>제대로 무르익은 여름 제철 과일 복숭아에 톡톡 터지는 딸기 과육을 더한 아이스 블렌디드 음료</p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="content">
+    <img src="images/ediya_달고나라떼.png" alt="Nature" style="width:100%">
+      <h3>달고나라떼</h3>
+      <p>달콤한 달고나와 우유가 조화롭게 어우러져, 달고나 분태의 바삭한 식감고 함께 즐길 수 있는 제품</p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="content">
+    <img src="images/ediya_그린파인후룻치노.png" alt="Lights" style="width:100%">
+      <h3>그린파인후룻치노</h3>
+      <p>새콤달콤한 파인애플의 리얼한 맛에 과육의 식감이 더해져, 시원하게 즐길 수 있는 제품</p>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="content">
+    <img src="images/star_라임모히토티.png" alt="Nature" style="width:100%">
+      <h3>라임모히토티</h3>
+      <p>라임과 사과 과즙이 팡팡 터지는 맑고 청량한 스타벅스 라임모히트 티와 함께 여름 휴가를 누리세요 </p>
+    </div>
+  </div>
+<!-- END GRID -->
+</div>
+
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+</script>
+
+</body>
+</html>

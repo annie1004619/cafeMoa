@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+
+</style>
+</head>
+<body>
+
+<div class="w3-container">
+  <h2>마이 페이지</h2>
+  <p>추천메뉴에서 선택했던 메뉴들 입니다.</p>
+  <ul class="w3-ul w3-card-4">
+   <li class="w3-bar">
+      <span onclick="this.parentElement.style.display='none'; remove(0)"  class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+      <img id ="img0" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+      <div class="w3-bar-item">
+        <span class="w3-large">첫번째 선택</span><br>
+        <span id="select0"></span>
+      </div>
+    </li>
+    
+    <li class="w3-bar">
+      <span onclick="this.parentElement.style.display='none'; remove(1)" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+      <img id="img1"  class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+      <div class="w3-bar-item">
+        <span class="w3-large">두번째 선택</span><br>
+        <span id="select1"></span>
+      </div>
+    </li>
+
+    <li class="w3-bar">
+      <span onclick="this.parentElement.style.display='none'; remove(2)" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+      <img id="img2" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+      <div class="w3-bar-item">
+        <span class="w3-large">세번째 선택</span><br>
+        <span id="select2"></span>
+      </div>
+    </li>
+
+    <li class="w3-bar">
+      <span onclick="this.parentElement.style.display='none'; remove(3)" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+      <img id="img3" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+      <div class="w3-bar-item">
+        <span class="w3-large">네번째 선택</span><br>
+        <span id="select3"></span>
+      </div>
+    </li>
+    
+    <li class="w3-bar">
+      <span onclick="this.parentElement.style.display='none' ;remove(4)" value="0" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+      <img id="img4" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+      <div class="w3-bar-item">
+        <span class="w3-large">다섯번째 선택</span><br>
+        <span id="select4"></span>
+      </div>
+    </li>
+    
+    <li class="w3-bar">
+      <span onclick="this.parentElement.style.display='none'; remove(5)" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+      <img id="img5" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+      <div class="w3-bar-item">
+        <span class="w3-large">여섯번째 선택</span><br>
+        <span id="select5"></span>
+      </div>
+    </li>
+    
+    <li class="w3-bar">
+      <span onclick="this.parentElement.style.display='none'; remove(6)" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+      <img id="img6" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+      <div class="w3-bar-item">
+        <span class="w3-large">일곱번째 선택</span><br>
+        <span id="select6"></span>
+      </div>
+    </li>
+    
+    <li class="w3-bar">
+      <span onclick="this.parentElement.style.display='none'; remove(7)" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+      <img id="img7" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+      <div class="w3-bar-item">
+        <span class="w3-large">여덟번째 선택</span><br>
+        <span id="select7"></span>
+      </div>
+    </li>
+    
+    <li class="w3-bar">
+      <span onclick="this.parentElement.style.display='none'; remove(8)" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+      <img id="img8" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+      <div class="w3-bar-item">
+        <span class="w3-large">아홉번째 선택</span><br>
+        <span id="select8"></span>
+      </div>
+    </li>
+    
+    <li class="w3-bar">
+      <span onclick="this.parentElement.style.display='none'; remove(9)" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+      <img id="img9" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+      <div class="w3-bar-item">
+        <span class="w3-large">열번째 선택</span><br>
+        <span id="select9"></span>
+      </div>
+    </li>
+    
+   
+    
+    
+  </ul>
+</div>
+
+<script>
+
+function remove(i){
+	alert("마이 페이지에서 메뉴가 삭제됩니다.");
+
+		var val = JSON.parse(localStorage.getItem("mymenu"));
+		val[i]=null;	
+		 localStorage.setItem("mymenu",JSON.stringify(val));
+}
+
+
+
+if(window.localStorage) { 
+	
+	for(i=0;i<localStorage.length;i++){
+		//키 얻어내기
+		var key = localStorage.key(i);
+		
+		if(key=='mymenu'){
+			var key = localStorage.key(i);
+			var val = JSON.parse(localStorage.getItem(key));
+			
+		}
+	}
+		//키를 가져와서 값을 알아내기
+		var id0  =document.getElementById("select0");
+		var img0 = document.getElementById("img0");
+		if(val[0]!=null){
+			id0.innerHTML=val[0];
+			img0.src="images/"+val[0]+".png";
+		}else{
+			id0.innerHTML="아직 선택하지 않았습니다.";
+		}
+		
+		var id1  =document.getElementById("select1");
+		var img1 = document.getElementById("img1");
+		if(val[1]!=null){
+			id1.innerHTML=val[1];
+			img1.src="images/"+val[1]+".png";
+		}else{
+			id1.innerHTML="아직 선택하지 않았습니다.";
+		}
+		
+		var id2  =document.getElementById("select2");
+		var img2 = document.getElementById("img2");
+		if(val[2]!=null){
+			id2.innerHTML=val[2];
+			img2.src="images/"+val[2]+".png";
+		}else{
+			id2.innerHTML="아직 선택하지 않았습니다.";
+		}
+		
+		
+		var id3  =document.getElementById("select3");
+		var img3 = document.getElementById("img3");
+		if(val[3]!=null){
+			id3.innerHTML=val[3];
+			img3.src="images/"+val[3]+".png";
+		}else{
+			id3.innerHTML="아직 선택하지 않았습니다.";
+		}
+		
+		var id4  =document.getElementById("select4");
+		var img4 = document.getElementById("img4");
+		if(val[4]!=null){
+			id4.innerHTML=val[4];
+			img4.src="images/"+val[4]+".png";
+		}else{
+			id4.innerHTML="아직 선택하지 않았습니다.";
+		}
+		
+		var id5  =document.getElementById("select5");
+		var img5 = document.getElementById("img5");
+		if(val[5]!=null){
+			id5.innerHTML=val[5];
+			img5.src="images/"+val[5]+".png";
+		}else{
+			id5.innerHTML="아직 선택하지 않았습니다.";
+		}
+		
+		var id6  =document.getElementById("select6");
+		var img6 = document.getElementById("img6");
+		if(val[6]!=null){
+			id6.innerHTML=val[6];
+			img6.src="images/"+val[6]+".png";
+		}else{
+			id6.innerHTML="아직 선택하지 않았습니다.";
+		}
+		
+		var id7  =document.getElementById("select7");
+		var img7 = document.getElementById("img7");
+		if(val[7]!=null){
+			id7.innerHTML=val[7];
+			img7.src="images/"+val[7]+".png";
+		}else{
+			id7.innerHTML="아직 선택하지 않았습니다.";
+		}
+		
+		var id8  =document.getElementById("select8");
+		var img8 = document.getElementById("img8");
+		if(val[8]!=null){
+			id8.innerHTML=val[8];
+			img8.src="images/"+val[8]+".png";
+		}else{
+			id8.innerHTML="아직 선택하지 않았습니다.";
+		}
+		
+		var id9  =document.getElementById("select9");
+		var img9 = document.getElementById("img9");
+		if(val[9]!=null){
+			id9.innerHTML=val[9];
+			img9.src="images/"+val[9]+".png";
+		}else{
+			id9.innerHTML="아직 선택하지 않았습니다.";
+		}
+		
+		
+		
+	
+
+}
+</script>
+</body>
+</html>

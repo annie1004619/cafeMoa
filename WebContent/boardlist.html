@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+<style>
+body {
+   background-color :#f1f1f1;
+   margin-left:10%;
+   margin-right:10%;
+}
+
+.btn{
+
+   background-color:  #4CAF50;;
+   padding: 10px 10px;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+ display:inlineblock;
+  font-size: 14px;
+  cursor: pointer;
+ }
+
+#write_btn{
+margin-left:80%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color:white}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+</head>
+<body>
+<h3>자유 게시판</h3>
+<p>삭제시 하나 씩 삭제해주세요</p>
+
+
+<script>
+var title = document.getElementById("title");
+var writer = document.getElementById("writer");
+var date = document.getElementById("date");
+var content = document.getElementById("content");
+var title_bar = document.getElementById("title_bar");
+var writer_bar = document.getElementById("writer_bar");
+var date_bar = document.getElementById("date_bar");
+
+if(window.localStorage) { 
+   //table 시작 태그
+   document.write("<table id='table1'>");
+   document.write("<thead><tr><th></th><th>제목</th><th>작성자</th><th>날짜</th><th></th></tr></thead>");
+   document.write("<tbody>");
+   //로컬 스토리지의 개수만큼 반복
+   for(i=0;i<localStorage.length;i++){
+      //키 얻어내기
+      var key = localStorage.key(i);
+      if(key=='mymenu'){
+         continue;
+      }
+      //키를 가져와서 값을 알아내기
+      var val = JSON.parse(localStorage.getItem(key));
+      //row 시작
+      document.write("<tr>");
+      //번호 - <span> 사용
+      document.write("<td></td>");
+      //제목 - <th>사용
+      document.write("<td><a href='showlist.html?"+i+"'>"+key+"</a></td>");
+      //작성자
+      document.write("<td>"+val[1]+"</td>");
+      //날짜
+      document.write("<td>"+val[0]+"</td>");
+      //row 끝
+      document.write("<td><input type='checkbox' name='check'</td>");
+      document.write("</tr>");
+   }
+   //table 끝
+   document.write("</tbody>");
+   document.write("</table>");
+}
+else {
+   alert("지원하지 않습니다."); 
+}
+
+
+function remove() {
+      //localstorage 있는지 확인-> 없으면 alert창 & return
+      if(!window.localStorage){
+         alert("세션스토리지를 지원하지 않습니다.");
+         return;}
+      
+      var myposition;
+      var chk = document.getElementsByName("check");
+      var result=confirm("삭제하시겠습니까?");
+      if(result){
+    	  for(p=0;p<localStorage.length;p++){
+    		  key=localStorage.key(p)
+    		  if(key=="mymenu"){
+    			  myposition=p;
+    		  }
+    		  }
+    	  
+    	  
+    	  
+      for(var j=0;j<chk.length;j++){
+         if(chk[j].checked==true){
+        	 if(j>=myposition){
+        		 j++;
+            	 key=localStorage.key(j);
+            	 localStorage.removeItem(key);
+            	
+        	 }
+        	 else{
+        		 key=localStorage.key(j);
+        		
+        		 localStorage.removeItem(key);
+        		
+        	 }
+        	
+            
+         }
+      }
+      location.href="boardlist.html";	 
+      }     	 
+           
+      else{
+         for(var j=0;j<chk.length;j++){
+            if(chk[j].checked==true){
+            	alert(j);
+               chk[j].checked=false;
+            }
+         }
+   }
+}
+</script>
+<br/>
+<button id="write_btn" class="btn" onclick="location.href='boardwrite.html'">글쓰기</button> 
+<button id="delete_btn" class="btn" onclick="remove()">삭제</button>
+</body>
+</html>

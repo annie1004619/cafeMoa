@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+   
+	<title>자유게시판 글 보기</title>
+<style>
+#btn{
+margin-left:70%;
+}
+.frm{
+width:90%;
+height:80%;
+ background-color :white;
+ }
+ body{
+ margin-left:20%;
+ margin-right:20%;
+ background-color :#f1f1f1;
+ }
+ .btn{
+  background-color: #007DBA;
+  padding: 10px 10px;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+ }
+
+.first {
+    border: 1px solid red;
+    display:inline-block;
+    width:65%;
+    box-sizing: border-box;
+}
+
+.second{
+	text-align:center;
+    border: 1px solid green;
+    display:inline-block;
+    width:23%;
+    box-sizing: border-box;
+
+}
+
+.third{
+    border: 1px solid blue;
+    display:inline-block;
+    width:33%;
+    box-sizing: border-box;
+
+}
+.four{
+  border: 1px solid black;
+    width:80%;
+    height:300px;
+    box-sizing: border-box;
+}
+.parent{
+    width: 90%;
+    margin: 10px auto;
+}
+</style>
+</head>
+<body>
+<h3>자유 게시판</h3>
+
+<span>제목:&nbsp; </span><div class="first" id="title"></div>
+<div class="parent">
+        <span>날짜:&nbsp; </span><div class="second" id="date"></div>&nbsp;&nbsp;
+       <span>작성자:&nbsp; </span><div class="third" id="writer"></div>
+    </div>
+<div id="content" class="four"></div>
+<br/>
+<input type="button" class="btn" id="btn" value="뒤로가기" onclick="back()">
+<script>
+var temp=location.href.split("?");
+var data=temp[1];
+show(data);
+
+
+function show(i){
+	      //키 얻어내기
+	      var key = localStorage.key(i);
+	      if(key=='mymenu'){
+	         i++;}
+	      
+      //키 얻어내기
+      var key = localStorage.key(i);
+      //키를 가져와서 값을 알아내기
+      var val = JSON.parse(localStorage.getItem(key));
+      //row 시작
+      title.innerHTML = key;
+      writer.innerHTML=val[1];
+      date.innerHTML=val[0];
+      content.innerHTML=val[2];
+}
+
+function back(){
+   var win = window.history.back();
+}
+
+</script>
+</body>
+</html>

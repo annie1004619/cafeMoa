@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+ <style>
+body {font-family: Verdana, sans-serif;
+margin-left:20%;
+ background-color:#f1f1f1;}
+ 
+ figure{
+ float:left;
+ text-align:center;
+ padding:0;
+ }
+ figure img{
+ width:50%;
+ height:50%;
+ }
+ figure figcaption{
+ font-size:10px;
+ }
+ fieldset{
+ width:45%;
+ height:30%;
+ margin-left:100px;margin-right:100px;
+ }
+ div{
+ width:100%;
+ height:100%;
+ }
+ .btn{
+   margin-left:75%;
+   background-color: #007DBA;
+   padding: 13px 30px;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+ }
+ </style>
+</head>
+<body>
+<fieldset>
+<legend>
+키워드 선택
+</legend>
+<form name="frm">
+<br/>
+COFFEE<input type="checkbox" name="menu" id="coffee" value="coffee">
+BEVERAGE<input type="checkbox" name="menu" id="beverage" value="beverage">
+TEA<input type="checkbox" name="menu" id="tea" value="tea">
+SHAKE/ICE<input type="checkbox" name="menu" id="shake" value="shake">
+ADE<input type="checkbox" name="menu" id="ade" value="ade">
+<br/>
+달달<input type="checkbox" name="menu" id="sweet" value="sweet">
+상큼<input type="checkbox" name="menu" id="fresh" value="fresh">
+안 단거<input type="checkbox" name="menu" id="nosweet" value="nosweet">
+<br/>
+녹차<input type="checkbox" name="menu" id="greentea" value="greentea">
+초코<input type="checkbox" name="menu" id="chocolate" value="chocolate">
+딸기<input type="checkbox" name="menu" id="strawberry" value="strawberry">
+<input type="button" class="btn" value="선택" onclick="buttonCheck()">
+</form>
+<br/>
+</fieldset>
+<br/><br/>
+<div id="show_select"></div>
+<input type="button" class="btn" value="마이페이지로 이동" onclick="location.href='mypage.html'">
+<script>
+var div = document.getElementById("show_select");
+var chkArray =new Array(12);
+chkArray = [0,0,0,0,0,0,0,0,0,0,0,0];
+
+var edi = new Array(56);
+for(var i=0;i<edi.length;i++){
+   edi[i]="";
+}
+
+var str="";
+
+//커피
+edi[0]="<figure><img src='images/ediya_바닐라라떼.png' id='ediya_바닐라라떼' onclick='save(this.id)'><figcaption>이디야_바닐라라떼</figcaption></figure><figure><img src='images/ediya_연유카페라떼.png' id='ediya_연유카페라떼' onclick='save(this.id)'><figcaption>이디야_연유카페라떼</figcaption></figure><figure><img src='images/hollys_아메리카노.png' id='hollys_아메리카노' onclick='save(this.id)'><figcaption>할리스_아메리카노</figcaption></figure><figure><img src='images/hollys_카페모카.png' id='hollys_카페모카' onclick='save(this.id)'><figcaption>할리스_카페모카</figcaption></figure><figure><img src='images/hollys_바닐라딜라이트.png' id='hollys_바닐라딜라이트' onclick='save(this.id)'><figcaption>할리스_바닐라딜라이트</figcaption></figure><figure><img src='images/hollys_그린티크림라떼.png' id='hollys_그린티크림라떼' onclick='save(this.id)'><figcaption>할리스_그린티크림라떼</figcaption></figure>";
+//베버리지
+edi[1]="<figure><img src='images/ediya_녹차라떼.png' id='ediya_녹차라떼' onclick='save(this.id)'><figcaption>이디야_녹차라떼</figcaption></figure> <figure><img src='images/ediya_초콜렛.png' id='ediya_초콜렛' onclick='save(this.id)'><figcaption>이디야_초콜렛</figcaption></figure><figure><img src='images/hollys_리얼벨지안초코.png' id='hollys_리얼벨지안초코' onclick='save(this.id)'><figcaption>할리스_리얼벨지안초코</figcaption></figure>";
+//티
+edi[2]="<figure><img src='images/ediya_로즈자스민티.png' id='ediya_로즈자스민티' onclick='save(this.id)'><figcaption>이디야_로즈자스민티</figcaption></figure> <figure><img src='images/ediya_자몽네이블오렌지.png' id='ediya_자몽네이블오렌지' onclick='save(this.id)'><figcaption>이디야_자몽네이블오렌지</figcaption></figure><figure><img src='images/hollys_페퍼민트.png' id='hollys_페퍼민트' onclick='save(this.id)'><figcaption>할리스_페퍼민트</figcaption></figure><figure><img src='images/star_라임모히토티.png' id='star_라임모히토티' onclick='save(this.id)'><figcaption>스타벅스_라임모히토티</figcaption></figure><figure><img src='images/star_쿨라임피지오.png' id='star_쿨라임피지오' onclick='save(this.id)'><figcaption>스타벅스_쿨라임피지오</figcaption></figure>";
+//쉐이크
+edi[3]="<figure><img src='images/ediya_딸기쉐이크.png' id='ediya_딸기쉐이크' onclick='save(this.id)'><figcaption>이디야_딸기쉐이크</figcaption></figure> <figure><img src='images/ediya_밥대신라이스쉐이크.png' id='ediya_밥대신라이스쉐이크' onclick='save(this.id)'><figcaption>이디야_밥대신라이스쉐이크</figcaption></figure> <figure><img src='images/ediya_녹차플렛치노.png' id='ediya_녹차플렛치노' onclick='save(this.id)'><figcaption>이디야_녹차플렛치노</figcaption></figure><figure><img src='images/hollys_피치딸기크러쉬.png' id='hollys_피치딸기크러쉬' onclick='save(this.id)'><figcaption>할리스_피치딸기크러쉬</figcaption></figure><figure><img src='images/star_애플망고블렌디드.png' id='star_애플망고블렌디드' onclick='save(this.id)'><figcaption>스타벅스_애플망고블렌디드</figcaption></figure>";
+//에이드
+edi[4]="<figure><img src='images/ediya_레몬에이드.png' id='ediya_레몬에이드' onclick='save(this.id)'><figcaption>이디야_레몬에이드</figcaption></figure><figure><img src='images/hollys_자몽파인스파클링.png' id='hollys_자몽파인스파클링' onclick='save(this.id)'><figcaption>할리스_자몽파인스파클링</figcaption></figure><figure><img src='images/hollys_복숭아자두스파클링.png' id='hollys_복숭아자두스파클링' onclick='save(this.id)'><figcaption>할리스_복숭아자두스파클링</figcaption></figure>";
+//커피달달
+edi[5]="<figure><img src='images/ediya_바닐라라떼.png' id='ediya_바닐라라떼' onclick='save(this.id)'><figcaption>이디야_바닐라라떼</figcaption></figure> <figure><img src='images/ediya_연유카페라떼.png' id='ediya_연유카페라떼' onclick='save(this.id)'><figcaption>이디야_연유카페라떼</figcaption></figure><figure><img src='images/hollys_카페모카.png' id='hollys_카페모카' onclick='save(this.id)'><figcaption>할리스_카페모카</figcaption></figure><figure><img src='images/hollys_바닐라딜라이트.png' id='hollys_바닐라딜라이트' onclick='save(this.id)'><figcaption>할리스_바닐라딜라이트</figcaption></figure><figure><img src='images/hollys_그린티크림라떼.png' id='hollys_그린티크림라떼' onclick='save(this.id)'><figcaption>할리스_그린티크림라떼</figcaption></figure>";
+//커피상큼
+edi[6]="<figure><img src='images/ediya_콜드브루니트로.png' id='ediya_콜드브루니트로' onclick='save(this.id)'><figcaption>이디야_콜드브루니트로</figcaption></figure>";
+//커피 안단거
+edi[7]="<figure><img src='images/ediya_카페라떼.png' id='ediya_카페라떼' onclick='save(this.id)'><figcaption>이디야_카페라떼</figcaption></figure>><figure><img src='images/hollys_아메리카노.png' id='hollys_아메리카노' onclick='save(this.id)'><figcaption>할리스_아메리카노</figcaption></figure>";
+//베버달달
+edi[8]="<figure><img src='images/ediya_녹차라떼.png' id='ediya_녹차라떼' onclick='save(this.id)'><figcaption>이디야_녹차라떼</figcaption></figure> <figure><img src='images/ediya_초콜렛.png' id='ediya_초콜렛' onclick='save(this.id)'><figcaption>이디야_초콜렛</figcaption></figure><figure><img src='images/hollys_리얼벨지안초코.png' id='hollys_리얼벨지안초코' onclick='save(this.id)'><figcaption>할리스_리얼벨지안초코</figcaption></figure><figure><img src='images/ediya_홍시쥬스.png' id='ediya_홍시쥬스' onclick='save(this.id)'><figcaption>이디야_홍시쥬스</figcaption></figure>";
+//베버 상큼
+edi[9]="<figure><img src='images/ediya_키위쥬스.png' id='ediya_키위쥬스' onclick='save(this.id)'><figcaption>이디야_키위쥬스</figcaption></figure>";
+//베버 안단거
+//티 달달
+edi[11]="<figure><img src='images/ediya_자몽네이블오렌지.png' id='ediya_자몽네이블오렌지' onclick='save(this.id)'><figcaption>이디야_자몽네이블오렌지</figcaption></figure><figure><img src='images/hollys_복숭아얼그레이.png' id='hollys_복숭아얼그레이' onclick='save(this.id)'><figcaption>할리스_복숭아얼그레이</figcaption></figure>";
+//티 상큼
+edi[12]="<figure><img src='images/star_라임모히토티.png' id='star_라임모히토티' onclick='save(this.id)'><figcaption>스타벅스_라임모히토티</figcaption></figure><figure><img src='images/star_쿨라임피지오.png' id='star_쿨라임피지오' onclick='save(this.id)'><figcaption>스타벅스_쿨라임피지오</figcaption></figure>";
+//티 안단거
+edi[13]="<figure><img src='images/ediya_로즈자스민티.png' id='ediya_로즈자스민티' onclick='save(this.id)'><figcaption>이디야_로즈자스민티</figcaption></figure>";
+//쉐이크 달달
+edi[14]="<figure><img src='images/ediya_딸기쉐이크.png' id='ediya_딸기쉐이크' onclick='save(this.id)'><figcaption>이디야_딸기쉐이크</figcaption></figure> <figure><img src='images/ediya_밥대신라이스쉐이크.png' id='ediya_밥대신라이스쉐이크' onclick='save(this.id)'><figcaption>이디야_밥대신라이스쉐이크</figcaption></figure> <figure><img src='images/ediya_녹차플렛치노.png' id='ediya_녹차플렛치노' onclick='save(this.id)'><figcaption>이디야_녹차플렛치노</figcaption></figure><figure><img src='images/star_화이트딸기크림프라푸치노.png' id='star_화이트딸기크림프라푸치노' onclick='save(this.id)'><figcaption>스타벅스_화이트딸기크림프라푸치노</figcaption></figure>";
+//쉐이크 상큼
+edi[15]="<figure><img src='images/ediya_딸기요거트.png' id='ediya_딸기요거트' onclick='save(this.id)'><figcaption>이디야_딸기요거트</figcaption></figure><figure><img src='images/star_애플망고블렌디드.png' id='star_애플망고블렌디드' onclick='save(this.id)'><figcaption>스타벅스_애플망고블렌디드</figcaption></figure>";
+//쉐이크 안단거
+edi[16]="";
+//에이드 달달
+edi[17]="<figure><img src='images/ediya_청포도에이드.png' id='ediya_청포도에이드' onclick='save(this.id)'><figcaption>이디야_청포도에이드</figcaption></figure><figure><img src='images/hollys_복숭아자두스파클링.png' id='hollys_복숭아자두스파클링' onclick='save(this.id)'><figcaption>할리스_복숭아자두스파클링</figcaption></figure>";
+//에이드 상큼
+edi[18]="<figure><img src='images/ediya_레몬에이드.png' id='ediya_레몬에이드' onclick='save(this.id)'><figcaption>이디야_레몬에이드</figcaption></figure><figure><img src='images/hollys_자몽파인스파클링.png' id='hollys_자몽파인스파클링' onclick='save(this.id)'><figcaption>할리스_자몽파인스파클링</figcaption></figure>";
+//에이드 안단거
+edi[19]="";
+//녹차베버리지
+edi[20]="<figure><img src='images/ediya_녹차라떼.png' id='ediya_녹차라떼' onclick='save(this.id)'><figcaption>이디야_녹차라떼</figcaption></figure>"; 
+//초코베버리지
+edi[21]="<figure><img src='images/ediya_초콜렛.png' id='ediya_초콜렛' onclick='save(this.id)'><figcaption>이디야_초콜렛</figcaption></figure><figure><img src='images/hollys_리얼벨지안초코.png' id='hollys_리얼벨지안초코' onclick='save(this.id)'><figcaption>할리스_리얼벨지안초코</figcaption></figure>";
+//딸기베버리지
+edi[22]="<figure><img src='images/ediya_딸기쥬스.png' id='ediya_딸기쥬스' onclick='save(this.id)'><figcaption>이디야_딸기쥬스</figcaption></figure>";
+//녹차 티
+edi[23]="<figure><img src='images/ediya_어릿잎녹차.png' id='ediya_어릿잎녹차' onclick='save(this.id)'><figcaption>이디야_어릿잎녹차</figcaption></figure>";    
+edi[24]="";
+edi[25]="";
+//녹차쉐이크
+edi[26]="<figure><img src='images/ediya_녹차플렛치노.png' id='ediya_녹차플렛치노' onclick='save(this.id)'><figcaption>이디야_녹차플렛치노</figcaption></figure>"    
+//초코쉐이크   
+edi[27]="<figure><img src='images/ediya_초코묻고더블쉐이크.png' id='ediya_초코묻고더블쉐이크' onclick='save(this.id)'><figcaption>이디야_초코묻고더블쉐이크</figcaption></figure>"    
+//딸기쉐이크
+edi[28]="<figure><img src='images/ediya_딸기쉐이크.png' id='ediya_딸기쉐이크' onclick='save(this.id)'><figcaption>이디야_딸기쉐이크</figcaption></figure><figure><img src='images/star_화이트딸기크림프라푸치노.png' id='star_화이트딸기크림프라푸치노' onclick='save(this.id)'><figcaption>스타벅스_화이트딸기크림프라푸치노</figcaption></figure>"    
+//세개누르는거
+//달달한녹차베버리지
+edi[29]="<figure><img src='images/ediya_녹차라떼.png' id='ediya_녹차라떼' onclick='save(this.id)'><figcaption>이디야_녹차라떼</figcaption></figure>";
+//달달한초코베버리지
+edi[30]="<figure><img src='images/ediya_초콜렛.png' id='ediya_초콜렛' onclick='save(this.id)'><figcaption>이디야_초콜렛</figcaption></figure><figure><img src='images/hollys_리얼벨지안초코.png' id='hollys_리얼벨지안초코' onclick='save(this.id)'><figcaption>할리스_리얼벨지안초코</figcaption></figure>";
+//달달한딸기베버리지
+edi[31]="<figure><img src='images/ediya_딸기쥬스.png' id='ediya_딸기쥬스' onclick='save(this.id)'><figcaption>이디야_딸기쥬스</figcaption></figure>";
+//상큼한녹차베버리지
+edi[32]="";
+//상큼한초코베버리지
+edi[33]="";
+//상큼한딸기베버리지
+edi[34]="";
+//안단
+edi[35]="";
+//안단
+edi[36]="";
+//안단
+edi[37]="";
+//달달한
+edi[38]="";
+//달달한
+edi[39]="";
+//달달
+edi[40]="";
+//상큼
+edi[41]="";
+//상큼
+edi[42]="";
+//상큼
+edi[43]="";
+//안단녹차티
+edi[44]="<figure><img src='images/ediya_어릿잎녹차.png' id='ediya_어릿잎녹차' onclick='save(this.id)'><figcaption>이디야_어릿잎녹차</figcaption></figure>";
+//안단
+edi[45]="";
+//안단
+edi[46]="";
+//달달한녹차쉐이크
+edi[47]="<figure><img src='images/ediya_녹차플렛치노.png' id='ediya_녹차플렛치노' onclick='save(this.id)'><figcaption>이디야_녹차플렛치노</figcaption></figure>";
+//달달한초코쉐이크
+edi[48]="<figure><img src='images/ediya_초코묻고더블쉐이크.png' id='ediya_초코묻고더블쉐이크' onclick='save(this.id)'><figcaption>이디야_초코묻고더블쉐이크</figcaption></figure>";
+//달달한딸기쉐이크
+edi[49]="<figure><img src='images/ediya_딸기쉐이크.png' id='ediya_딸기쉐이크' onclick='save(this.id)'><figcaption>이디야_딸기쉐이크</figcaption></figure>";
+//상큼한
+edi[50]="";
+//상큼한
+edi[51]="";
+//상큼한딸기쉐이크
+edi[52]="<figure><img src='images/ediya_딸기요거트.png' id='ediya_딸기요거트' onclick='save(this.id)'><figcaption>이디야_딸기요거트</figcaption></figure>";
+//안단
+edi[53]="";
+//안단
+edi[54]="";
+//안단
+edi[55]="";
+
+
+
+
+function buttonCheck(){
+   str="";
+   div.innerHTML=str;
+   var menu = document.frm.menu;
+   
+   var chk=0;//하나도 입력하지 않은 것을 체크 
+   var chk1=0;//첫번째 줄에서 입력 했나 안했나를  체크 
+   var chk2=0;//두번째 줄에서 체크 했나 안했나를 체크 
+   var chk3=0;//세번째 줄에서 체크 했나 안했나 체크
+   
+   for(var i=0;i<menu.length;i++){
+      if(menu[i].checked==true){
+      chkArray[i]=1;
+      chk=1;
+         }
+      else
+         chkArray[i]=0;
+      }
+   if(chk==0){
+      alert("키워드를 선택하세요");
+   }
+   for(var i=0;i<5;i++){//첫번째 줄에서 입력 했나 안했나를  체크 
+      if(chkArray[i]==1){
+         chk1=1;
+      }   
+   }   
+   for(var i=5;i<8;i++){//두번째 줄에서 체크 했나 안했나를 체크 
+      if(chkArray[i]==1){
+         chk2=1;
+      }
+   }
+   
+   if(chk1==0){//첫번째 줄 체크가 하나도 안되있다면 두번째 세버
+      alert("첫번째 줄의 키워드는 필수입니다!")
+   }
+   for(var i=8;i<11;i++){//세번째 줄에서 체크 했나 안했나를 체크 
+      if(chkArray[i]==1){
+         chk3=1;
+      }
+   }
+   if(chk2==0){//두번째줄부터 체크된것이 없을때 
+      if(chk3==0){//세번째줄도 체크된것 없음 첫번째 선택 전체 출력
+         for(var i=0;i<5;i++){
+            if(chkArray[i]==1){
+               str=str+edi[i];
+            }
+         }
+         div.innerHTML=str;   
+      }else if(chk3==1){//세번째줄 체크
+         var k=0;
+         for(var i=1,k=0;i<4;i++,k+=2){
+            if(chkArray[i]==1){
+               for(var j=8;j<11;j++){
+                  if(chkArray[j]==1){
+                     str+=edi[j+i+k+11];
+                     
+                  }
+               }
+            }
+         }
+         div.innerHTML=str;
+      }
+   }
+   else if(chk2)//두번째줄부터 체크된 것이 있을때 
+      {   
+      if(chk3==0){//세번째줄 체크된것이 없을때
+         for(var i=0,k=0;i<5;i++,k+=2){
+            if(chkArray[i]==1){
+               for(j=5;j<8;j++){
+                  if(chkArray[j]==1){
+                     str+=edi[j+i+k];
+                  
+                  }
+               }
+            }
+         }
+         div.innerHTML=str;
+      }else if(chk3==1){//세번째줄 체크된 것이 있을때
+         for(var i=1,m=0;i<4;i++,m+=8){
+            if(chkArray[i]==1){
+               for(var j=5,k=0;j<8;j++,k+=2){
+                  if(chkArray[j]==1){
+                     for(var p=8;p<11;p++){
+                        if(chkArray[p]==1){
+                           str+=edi[i+j+p+k+15+m];
+                        
+                        
+                           }
+                        }
+                     }
+                  }
+            }
+         }
+         div.innerHTML=str;
+      }
+   }
+   
+}
+
+
+var list=new Array(10);
+
+
+function save(id){
+   var count=0;
+   var exist =0;
+   var id = id;
+   if(!window.localStorage){
+      alert("로컬스토리지를 지원하지 않습니다.");
+      return;
+   }
+  
+		var result=confirm("이 메뉴를 마이 페이지에 저장할까요?");
+		if(result){
+		   for(i=0;i<localStorage.length;i++){
+			      //키 얻어내기
+			      var key = localStorage.key(i);
+			      if(key=="mymenu"){
+			    	  var val = JSON.parse(localStorage.getItem(key));
+			    	  exist=1;
+			      }
+			   }
+			  
+		   if(exist==1){
+			   for(i=0;i<val.length;i++){
+				   if(val[i]==null){
+					   count++;
+					   if(count==1){
+						   val[i]=id;
+					   }
+				   }
+			   }
+			   localStorage.setItem("mymenu",JSON.stringify(val));
+		   }else if(exist==0){
+			   
+			   for(i=0;i<list.length;i++){
+				   if(list[i]==null){
+					  count++;
+					  if(count==1){
+						  list[i]=id;
+					  }
+			     	}
+			     } 
+			   localStorage.setItem("mymenu",JSON.stringify(list));  
+		      }
+		   
+		   if(count==0){
+			      alert("메뉴를 저장하는 공간이 다 찼습니다.마이페이지에서 삭제해주세요. ");
+			   }
+		   
+		   }
+		  
+   }
+
+</script>
+</body>
+</html>

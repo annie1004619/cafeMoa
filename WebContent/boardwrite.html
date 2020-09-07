@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+textarea {
+   font-size : 1.1em;
+}
+.btn{
+
+   background-color: #007DBA;
+   padding: 10px 10px;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+ }
+ 
+.frm{
+
+ background-color :white;
+ }
+ body{
+ margin-left:20%;
+ margin-right:20%;
+ background-color :#f1f1f1;
+ }
+#write_btn{
+margin-left:85%;
+}
+</style>
+<meta charset="UTF-8">
+<title>일기 쓰기</title>
+<script>
+function store() {
+   //브라우저가 localstorage 지원하는지 확인 -> 없으면 alert창
+   if(!window.localStorage){
+      alert("세션스토리지를 지원하지 않습니다.");
+      return;
+   }
+   
+   //날짜 가져오기 
+   var date = document.getElementById("date").innerHTML;
+   //제목 가져오기
+   var title = document.getElementById("title").value;   
+   //memo 가져오기
+   var memo = document.getElementById("memo").value;
+   var writer = document.getElementById("writer").value;
+   if(title.length==0){
+      alert("제목이 비어있습니다.");
+   }else if(writer.length==0){
+      alert("작성자가 비어있습니다.");
+   }else if(memo.length==0){
+      alert("글을 입력해주세요.");
+   }
+   else{
+      var list=[date,writer,memo];
+      //로컬 스토리지에 저장 
+      localStorage.setItem(title,JSON.stringify(list));
+      
+      var win = window.history.back();
+   }
+}
+
+function printDate() {
+   var span = document.getElementById("date");
+   var today = new Date();
+   var str = today.getFullYear() + "." 
+         + (today.getMonth()+1) + "."
+         + today.getDate(); 
+   span.innerHTML = str;
+}
+
+function back(){
+   var win = window.history.back();
+}
+
+</script>
+</head>
+<body onload="printDate();">
+<h3>자유 게시판 글쓰기</h3>
+
+<form class="frm">
+<div>날짜 <span id="date"></span><br/></div>
+<input id="title" type="text" size="50" placeholder="제목" >
+<input id="writer" type="text" size="30" placeholder="작성자" ><br/><br/>
+<textarea id="memo" cols="100" rows="20" placeholder="내용" ></textarea>
+<br>
+<input type="button" id="write_btn" class="btn" value="저장" onclick="store()" >
+<input type="button" class="btn" value="취소" onclick="back()">
+</form>
+</body>
+</html>
